@@ -11,7 +11,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	darkTheme: "one-dark-pro",
 
 	// 亮色主题（用于亮色模式）
-	lightTheme: "one-light",
+	lightTheme: "solarized-light",
 
 	// 更多样式请看expressive-code的官方文档
 	// https://expressive-code.com/guides/themes/
@@ -19,14 +19,14 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// 代码块折叠插件配置
 	pluginCollapsible: {
 		enable: true, // 启用折叠功能
-		lineThreshold: 15, // 当代码行数超过15行时显示折叠按钮
-		previewLines: 8, // 折叠时显示前8行
+		lineThreshold: 50, // 当代码行数超过15行时显示折叠按钮
+		previewLines: 20, // 折叠时显示前8行
 		defaultCollapsed: true, // 默认折叠长代码块
 	},
 
 	// 语言徽章插件配置
 	pluginLanguageBadge: {
 		// 是否启用语言徽章插件
-		enable: false,
+		enable: true,
 	},
 };
