@@ -1,0 +1,69 @@
+name: Sync fork with upstream
+
+on:
+  schedule:
+    # GitHub cron uses UTC; this runs daily at 08:15 Asia/Shanghai.
+    - cron: "15 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sync-upstream-master
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    # This workflow belongs in the Fork, not in CuteLeaf/Firefly itself.
+    if: github.repository == 'sephymartin/sephymartin.github.io'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync master with upstream
+        id: sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          response="$(
+            gh api \
+              --method POST \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/${GITHUB_REPOSITORY}/merge-upstream" \
+              -f branch=master
+          )"
+
+          echo "$response"
+          merge_type="$(jq -er '.merge_type' <<< "$response")"
+          echo "merge_type=$merge_type" >> "$GITHUB_OUTPUT"
+
+      - name: Notify sync failure in Feishu
+        if: failure()
+        uses: sephymartin-lab/forge-actions/.github/actions/feishu-notify@main
+        with:
+          webhook: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          status: failure
+          title: "Fork master 同步上游失败"
+          summary: "sephymartin/sephymartin.github.io 的 master 分支同步 CuteLeaf/Firefly 失败，可能存在合并冲突。请打开 Actions 查看详细错误。"
+          run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ref-name: ${{ github.ref_name }}
+          sha: ${{ github.sha }}
+          actor: ${{ github.actor }}
+          repository: ${{ github.repository }}
+          workflow: ${{ github.workflow }}
+          run-number: ${{ github.run_number }}
+          event-name: ${{ github.event_name }}
+          extra-fields: >-
+            {"Upstream":"CuteLeaf/Firefly","Branch":"master","Failure":"merge-upstream API 或合并冲突"}
+
+      - name: Trigger deployment after sync
+        if: success() && steps.sync.outputs.merge_type != 'none'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref master
