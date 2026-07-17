@@ -72,3 +72,42 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    if: always()
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify deployment success in Feishu
+        if: needs.build.result == 'success' && needs.deploy.result == 'success'
+        uses: sephymartin-lab/forge-actions/.github/actions/feishu-notify@main
+        with:
+          webhook: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          status: success
+          title: "博客部署成功"
+          summary: "${{ github.repository }} 的 GitHub Pages 部署成功。"
+          run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ref-name: ${{ github.ref_name }}
+          sha: ${{ github.sha }}
+          actor: ${{ github.actor }}
+          repository: ${{ github.repository }}
+          workflow: ${{ github.workflow }}
+          run-number: ${{ github.run_number }}
+          event-name: ${{ github.event_name }}
+
+      - name: Notify deployment failure in Feishu
+        if: needs.build.result != 'success' || needs.deploy.result != 'success'
+        uses: sephymartin-lab/forge-actions/.github/actions/feishu-notify@main
+        with:
+          webhook: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          status: failure
+          title: "博客部署失败"
+          summary: "${{ github.repository }} 的 GitHub Pages 部署失败，请打开 Actions 查看详细错误。"
+          run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ref-name: ${{ github.ref_name }}
+          sha: ${{ github.sha }}
+          actor: ${{ github.actor }}
+          repository: ${{ github.repository }}
+          workflow: ${{ github.workflow }}
+          run-number: ${{ github.run_number }}
+          event-name: ${{ github.event_name }}
