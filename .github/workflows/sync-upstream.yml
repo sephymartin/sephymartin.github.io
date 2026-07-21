@@ -66,4 +66,4 @@ jobs:
         run: |
           gh workflow run deploy.yml \
             --repo "$GITHUB_REPOSITORY" \
-            --ref master
+            --ref custom
