@@ -58,12 +58,3 @@ jobs:
           event-name: ${{ github.event_name }}
           extra-fields: >-
             {"Upstream":"CuteLeaf/Firefly","Branch":"master","Failure":"merge-upstream API 或合并冲突"}
-
-      - name: Trigger deployment after sync
-        if: success() && steps.sync.outputs.merge_type != 'none'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run deploy.yml \
-            --repo "$GITHUB_REPOSITORY" \
-            --ref master
