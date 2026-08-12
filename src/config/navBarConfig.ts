@@ -11,10 +11,10 @@ import {
 // ============================================================================
 const getDynamicNavBarConfig = (): NavBarConfig => {
 	// 基础导航栏链接
-	const links: NavBarLink[] = [
-		// 主页
-		LinkPresets.Home,
-	];
+	const links: NavBarLink[] = [];
+
+	// 主页
+	links.push(LinkPresets.Home);
 
 	// 文章及其子菜单
 	links.push({
@@ -33,19 +33,16 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 动态
-	links.push(LinkPresets.Dynamic);
-
 	//社交及其子菜单
 	links.push({
 		name: "社交",
 		url: "#",
 		icon: "material-symbols:group",
 		children: [
-			// 相册
+			// 友链
 			LinkPresets.Friends,
 
-			// 追番
+			// 留言
 			LinkPresets.Guestbook,
 		],
 	});
@@ -56,14 +53,23 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		url: "#",
 		icon: "material-symbols:person",
 		children: [
+			// 动态
+			LinkPresets.Dynamic,
+
 			// 相册
 			LinkPresets.Gallery,
 
 			// 追番
 			LinkPresets.Anime,
 
+			// VNDB
+			LinkPresets.VNDB,
+
 			// 番组计划
 			LinkPresets.Bangumi,
+
+			// 书签导航
+			LinkPresets.Booknav,
 		],
 	});
 
@@ -191,6 +197,12 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:movie",
 		pageKey: "bangumi",
 	},
+	VNDB: {
+		name: "VNDB",
+		url: "/vndb/",
+		icon: "material-symbols:movie",
+		pageKey: "vndb",
+	},
 	Gallery: {
 		name: "相册",
 		url: "/gallery/",
@@ -202,6 +214,12 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		url: "/anime/",
 		icon: "material-symbols:live-tv",
 		pageKey: "anime",
+	},
+	Booknav: {
+		name: "书签导航",
+		url: "/booknav/",
+		icon: "material-symbols:bookmarks",
+		pageKey: "booknav",
 	},
 };
 

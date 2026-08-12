@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# generated vndb covers
+public/vndb-covers/
+
 # generated types
 .astro/
 
@@ -29,13 +32,20 @@ yarn.lock
 # ide
 .idea
 *.iml
-.claude
 
 # docs
 Firefly-docs/
+
+# lite 版本
+Firefly-Lite/
 
 cache/
 package/
 .obsidian/
 
 src/content/posts
+
+# vibe coding
+.codex*
+.claude
+.mimocode
