@@ -13,12 +13,20 @@ export const en: Translation = {
 	[Key.searchContent]: "Content",
 	[Key.searchViewMore]: "View more results ({count} more)",
 	[Key.other]: "Other",
+
+	// Navbar menu groups
+	[Key.navArticles]: "Articles",
+	[Key.navSocial]: "Social",
+	[Key.navMine]: "Mine",
+	[Key.navAbout]: "About",
+	[Key.navLinks]: "Links",
 	[Key.all]: "All",
 
 	[Key.tags]: "Tags",
 	[Key.categories]: "Categories",
 	[Key.allCategories]: "All Categories",
 	[Key.allTags]: "All Tags",
+	[Key.allSeries]: "All Series",
 	[Key.recentPosts]: "Recent Posts",
 	[Key.postList]: "Post List",
 	[Key.tableOfContents]: "Table of Contents",
@@ -77,11 +85,23 @@ export const en: Translation = {
 		"Here are my friends, welcome to visit and communicate with each other",
 	[Key.searchFriends]: "Search friends...",
 	[Key.friendsEmpty]: "No friends yet.",
-	[Key.booknav]: "Bookmark Directory",
+	[Key.booknav]: "Bookmark Nav",
 	[Key.booknavDescription]:
 		"A curated collection of useful sites, organized by category.",
 	[Key.searchBooknav]: "Search bookmarks...",
 	[Key.booknavEmpty]: "No bookmarks yet.",
+
+	// Project showcase
+	[Key.projects]: "Projects",
+	[Key.projectsDescription]: "Here are the projects I've built",
+	[Key.projectDetails]: "View details",
+	[Key.projectBack]: "Back to projects",
+	[Key.projectEmpty]: "No projects yet",
+	[Key.projectSearch]: "Search projects",
+	[Key.projectStatusPlanning]: "Planning",
+	[Key.projectStatusDeveloping]: "In Development",
+	[Key.projectStatusPublished]: "Published",
+	[Key.projectStatusArchived]: "Archived",
 	[Key.guestbook]: "Guestbook",
 	[Key.guestbookDescription]:
 		"Welcome to leave your mark here, share your thoughts and suggestions",
@@ -173,7 +193,7 @@ export const en: Translation = {
 	[Key.bangumiCategoryReal]: "Real",
 
 	// Bangumi Data Update
-	[Key.bangumiLastUpdated]: "Data updated at",
+	[Key.bangumiLastUpdated]: "Data updated on",
 	[Key.bangumiUpdatedAt]: "Build time",
 	[Key.bangumiDataStatic]: "Static data",
 
@@ -201,7 +221,7 @@ export const en: Translation = {
 	[Key.vndbNotConfigured]: "VNDB User ID Not Configured",
 	[Key.vndbNotConfiguredDesc]:
 		"Please configure your VNDB user ID in src/config/siteConfig.ts",
-	[Key.vndbLastUpdated]: "Data updated at",
+	[Key.vndbLastUpdated]: "Data updated on",
 	[Key.vndbVotes]: "votes",
 	[Key.vndbLengthVeryShort]: "Very short",
 	[Key.vndbLengthShort]: "Short",
@@ -209,9 +229,14 @@ export const en: Translation = {
 	[Key.vndbLengthLong]: "Long",
 	[Key.vndbLengthVeryLong]: "Very long",
 
-	// Anime Tracking
-	[Key.anime]: "Anime",
-	[Key.animeSubtitle]: "My anime tracking list, data from Bilibili and TMDB",
+	// Anime Tracking - Bilibili
+	[Key.bilibili]: "Bilibili",
+	[Key.bilibiliSubtitle]: "My Bilibili follow list (anime + drama)",
+	[Key.bilibiliNotConfigured]: "Bilibili not configured",
+	[Key.bilibiliNotConfiguredDesc]:
+		"Configure bilibili.uid in src/config/siteConfig.ts",
+
+	// Anime Tracking - Shared components
 	[Key.animeTotal]: "Total",
 	[Key.animeAverageRating]: "Avg Rating",
 	[Key.animeSearch]: "Search anime...",
@@ -223,21 +248,14 @@ export const en: Translation = {
 	[Key.animeDateDesc]: "Newest",
 	[Key.animeDateAsc]: "Oldest",
 	[Key.animeNoResults]: "No matching anime found",
-	[Key.animeLastUpdated]: "Data updated at",
-	[Key.animeSource]: "Source",
+	[Key.animeLastUpdated]: "Data updated on",
 	[Key.animeEpStatus]: "Progress",
 	[Key.animeViewDetails]: "View Details",
-	[Key.animeNotConfigured]: "Anime data source not configured",
-	[Key.animeNotConfiguredDesc]:
-		"Please configure Bilibili UID or TMDB API Key in src/config/siteConfig.ts",
 	[Key.animeBilibiliAvg]: "Bilibili Avg",
-	[Key.animeTmdbAvg]: "TMDB Avg",
-	[Key.animeDualSynced]: "Dual Synced",
 	[Key.animeNoOverview]: "No synopsis available",
 	[Key.animeClose]: "Close",
 	[Key.animeSynopsis]: "Synopsis",
 	[Key.animeWatchNow]: "Watch Now",
-	[Key.animeViewTmdb]: "View TMDB Details",
 	[Key.animeAllWithCount]: "All ({count})",
 	[Key.animeTVWithCount]: "TV ({count})",
 	[Key.animeMovieWithCount]: "Movie ({count})",
@@ -247,6 +265,36 @@ export const en: Translation = {
 	[Key.animeTypeChinese]: "Chinese Animation",
 	[Key.animeTypeDrama]: "Drama",
 	[Key.animeTypeConcert]: "Concert",
+
+	// MyAnimeList
+	[Key.mal]: "MyAnimeList",
+	[Key.malSubtitle]: "My anime and manga lists from MyAnimeList",
+	[Key.malCategoryAnime]: "Anime",
+	[Key.malCategoryManga]: "Manga",
+	[Key.malFilterAll]: "All",
+	[Key.malStatusWatching]: "Watching",
+	[Key.malStatusReading]: "Reading",
+	[Key.malStatusCompleted]: "Completed",
+	[Key.malStatusOnHold]: "On Hold",
+	[Key.malStatusDropped]: "Dropped",
+	[Key.malStatusPlanToWatch]: "Plan to Watch",
+	[Key.malStatusPlanToRead]: "Plan to Read",
+	[Key.malNoData]: "No Data",
+	[Key.malNoDataDescription]: "No items in this category",
+	[Key.malEmpty]: "No Data",
+	[Key.malEmptyReason]:
+		"Possible reasons: username does not exist, list is private, invalid Client ID, or network issue",
+	[Key.malFetchError]: "MyAnimeList Data Fetch Failed",
+	[Key.malFetchErrorDesc]:
+		"Failed to fetch data from MyAnimeList API during build. Please check the username and Client ID, and make sure the list is public.",
+	[Key.malNotConfigured]: "MyAnimeList Not Configured",
+	[Key.malNotConfiguredDesc]:
+		"Please configure your MyAnimeList username and Client ID in src/config/siteConfig.ts. The list must be public.",
+	[Key.malLastUpdated]: "Data updated on",
+	[Key.malSeasonWinter]: "Winter",
+	[Key.malSeasonSpring]: "Spring",
+	[Key.malSeasonSummer]: "Summer",
+	[Key.malSeasonFall]: "Fall",
 
 	// Pagination
 	[Key.paginationFirst]: "First",
@@ -288,6 +336,15 @@ export const en: Translation = {
 	[Key.rssCopied]: "RSS link copied to clipboard!",
 	[Key.rssCopyFailed]: "Copy failed, please copy the link manually",
 
+	// Atom Page
+	[Key.atom]: "Atom Feed",
+	[Key.atomDescription]: "Subscribe to get latest updates",
+	[Key.atomSubtitle]:
+		"Subscribe via Atom to get the latest articles and updates immediately",
+	[Key.atomLink]: "Atom Link",
+	[Key.atomCopyToReader]: "Copy link to your Atom reader",
+	[Key.atomCopied]: "Atom link copied to clipboard!",
+
 	// Last Modified Time Card
 	[Key.lastModifiedPrefix]: "Last updated on ",
 	[Key.lastModifiedOutdated]: "Some content may be outdated",
@@ -315,6 +372,13 @@ export const en: Translation = {
 	[Key.noRelatedPosts]: "No related posts",
 	[Key.noRandomPosts]: "No random posts",
 
+	// Article Series
+	[Key.series]: "Series",
+	[Key.seriesPartOf]: "Part of series",
+	[Key.seriesPart]: "Part {n}",
+	[Key.seriesThisArticle]: "This article",
+	[Key.noSeries]: "No series yet",
+
 	// Encrypted
 	[Key.postEncrypted]: "This post is encrypted",
 
@@ -322,6 +386,9 @@ export const en: Translation = {
 	[Key.wallpaperMode]: "Wallpaper Mode",
 	[Key.wallpaperBannerMode]: "Banner Wallpaper",
 	[Key.wallpaperFullscreenMode]: "Fullscreen Wallpaper",
+	[Key.fullscreenLayout]: "Fullscreen Layout",
+	[Key.fullscreenClassicLayout]: "Classic",
+	[Key.fullscreenHeroLayout]: "Hero",
 	[Key.wallpaperOverlayMode]: "Overlay Wallpaper",
 	[Key.wallpaperNoneMode]: "None Wallpaper",
 
@@ -446,6 +513,7 @@ export const en: Translation = {
 	[Key.galleryAlbums]: "albums",
 	[Key.galleryNoAlbums]: "No albums yet",
 	[Key.galleryBackToAlbums]: "Back to albums",
+	[Key.galleryEnterAlbum]: "Enter album",
 	[Key.searchAlbums]: "Search albums...",
 
 	// Password Protection
@@ -465,4 +533,11 @@ export const en: Translation = {
 	[Key.videoPrev]: "Previous video",
 	[Key.videoNext]: "Next video",
 	[Key.videoLoadError]: "Video failed to load",
+
+	// Immersive Reading
+	[Key.immersiveReading]: "Immersive Reading",
+	[Key.enterImmersiveReading]: "Enter Immersive Reading",
+	[Key.exitImmersiveReading]: "Exit Immersive Reading",
+	[Key.tocExpand]: "Expand directory",
+	[Key.tocCollapse]: "Collapse directory",
 };
